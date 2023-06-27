@@ -1,20 +1,28 @@
-d#include <cctype>
-#include <algorithm>
-#include <vector>
 #include <iostream>
+#include <cctype>
+#include <cstring>
 
-int	main(int argc, char *argv[]){
-	std::vector<std::string> arguments(argv, argv + argc);
-	int (*toupperPtr)(int) = &std::toupper;
-
-	if (argc)
+void	StringToUpper(char* str)
+{
+	for(size_t i = 0; str[i] != '\0'; i++)
 	{
-		std::transform(arguments.begin(), arguments.end(), arguments.begin(), toupperPtr);
-		for (int i = 0; i < argc; i++)
-			std::cout << arguments[i] << std::endl;
+		str[i] = std::toupper(static_cast<unsigned char>(str[i]));
 	}
-	else
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc == 1)
 	{
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+		return (0);
+	}
+	for(int i = 1; i < argc; i++)
+	{
+		StringToUpper(argv[i]);
+		for(size_t j = 0; argv[i][j] != '\0'; j++)
+		{
+				std::cout << argv[i][j];
+		}
 	}
 }
