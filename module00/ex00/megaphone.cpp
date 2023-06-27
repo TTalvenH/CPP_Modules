@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		StringToUpper(argv[i]);
 		for(size_t j = 0; argv[i][j] != '\0'; j++)
 		{
-				std::cout << argv[i][j];
+			std::cout << argv[i][j];
 		}
 	}
 }
