@@ -3,7 +3,6 @@
 PhoneBook::PhoneBook()
 {	
 	contactIndex = 0;
-	contactOldest = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -13,31 +12,42 @@ PhoneBook::~PhoneBook()
 int	PhoneBook::addContact()
 {
 	if (contactIndex == 8)
-		contactIndex = contactOldest++;
-	if (contactOldest == 8)
-		contactOldest = 0;
+		contactIndex = 0;
 	contacts[contactIndex].setFirstName(askContactInfo("first name"));
-	contacts[contactIndex].setFirstName(askContactInfo("last name"));
-	contacts[contactIndex].setFirstName(askContactInfo("nickname"));
-	contacts[contactIndex].setFirstName(askContactInfo("phonenumber"));
-	contacts[contactIndex].setFirstName(askContactInfo("dark secret"));
+	contacts[contactIndex].setLastName(askContactInfo("last name"));
+	contacts[contactIndex].setNickName(askContactInfo("nickname"));
+	contacts[contactIndex].setPhoneNumber(askContactInfo("phonenumber"));
+	contacts[contactIndex].setDarkSecret(askContactInfo("dark secret"));
 	contactIndex++;
 	return (0);
 }
 
 int PhoneBook::search()
 {
+	int			input;
+	int			indexCount = 0;
+
 	for (size_t i = 0; i < 8; i++)
 	{
 		if (contacts[i].isEmpty())
 			continue ;
 		std::cout << std::setw(10) << std::right << i << '|';
-		std::cout << std::setw(10) << std::right << contacts[i].getFirstName() << '|';
-		std::cout << std::setw(10) << std::right << contacts[i].getLastName() << '|';
-		std::cout << std::setw(10) << std::right << contacts[i].getNickName() << '|';
+		std::cout << std::setw(10) << std::right << truncIfNeeded(contacts[i].getFirstName()) << '|';
+		std::cout << std::setw(10) << std::right << truncIfNeeded(contacts[i].getLastName()) << '|';
+		std::cout << std::setw(10) << std::right << truncIfNeeded(contacts[i].getNickName()) << '|';
 		std::cout << std::endl;
-	}	
-	
+		indexCount++;
+	}
+	if (indexCount)
+	{
+		std::cout << "Give index: ";
+		std::cin >> input;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		if (input < indexCount && input >= 0)
+			contacts[input].displayInformation();
+		else
+			std::cout << "Index not found" << std::endl;
+	}
 	return (0);
 }
 
@@ -65,6 +75,13 @@ std::string PhoneBook::askContactInfo(std::string info)
 		}
 	} while (Input.empty());
 	return (Input);
+}
+
+std::string	PhoneBook::truncIfNeeded(std::string str)
+{
+	if (str.length() > 10)
+		return (str.substr(0, 9) + '.');
+	return (str);
 }
 
 int	PhoneBook::checkDigits(std::string str)

@@ -57,6 +57,15 @@ std::string	Contact::getDarkSecret()
 	return (darkSecret);
 }
 
+void	Contact::displayInformation()
+{
+	std::cout << "First name   : " << firstName << std::endl;
+	std::cout << "Last name    : " << lastName << std::endl;
+	std::cout << "Nickname     : " << nickName << std::endl;
+	std::cout << "Phonenumber  : " << phoneNumber << std::endl;
+	std::cout << "Dark secret  : " << darkSecret << std::endl;
+}
+
 bool	Contact::isEmpty()
 {
 	if (firstName.empty())
