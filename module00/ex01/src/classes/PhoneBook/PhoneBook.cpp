@@ -1,4 +1,5 @@
 #include <PhoneBook.hpp>
+#include <cstdlib>
 
 PhoneBook::PhoneBook()
 {	
@@ -42,6 +43,11 @@ int PhoneBook::search()
 	{
 		std::cout << "Give index: ";
 		std::cin >> input;
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			input = -1;
+		}
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		if (input < indexCount && input >= 0)
 			contacts[input].displayInformation();
@@ -58,6 +64,12 @@ std::string PhoneBook::askContactInfo(std::string info)
 	do {
 		std::cout << "Enter " << info << ": ";
 		std::getline(std::cin, Input);
+		if (std::cin.eof() || std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            exit(0);
+        }
 		if (info == "phonenumber")
 		{
 			for(size_t i = 0; i < Input.length(); i++)
