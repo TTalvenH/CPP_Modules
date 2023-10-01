@@ -1,6 +1,5 @@
 #include <Contact.hpp>
-#include <iostream>
-#include <sstream>
+
 Contact::Contact(){
 }
 

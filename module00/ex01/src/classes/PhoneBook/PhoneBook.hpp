@@ -5,16 +5,17 @@
 # include <iostream>
 # include <iomanip>
 # include <limits>
+# include <cstdlib>
 
 class PhoneBook 
 {
 	private:
-		Contact contacts[8];
+		Contact 	contacts[8];
 		int			contactIndex;
-		std::string	askContactInfo(std::string info);
-		std::string createColumn(std::string, std::size_t columnSize);
-		std::string truncIfNeeded(std::string str);
+
 		int			checkDigits(std::string str);
+		std::string	askContactInfo(std::string info);
+		std::string truncIfNeeded(std::string str);
 
 	public:
 		PhoneBook();
