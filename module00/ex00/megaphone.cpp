@@ -25,4 +25,5 @@ int	main(int argc, char **argv)
 			std::cout << argv[i][j];
 		}
 	}
+	std::cout << std::endl;
 }
