@@ -1,5 +1,5 @@
 # Program name
-NAME = ex00
+NAME = ex01
 
 # compiler
 CC = c++
@@ -14,7 +14,7 @@ INCS := $(wildcard $(addsuffix /*.hpp, $(VPATH)))
 INCLUDE = $(addprefix -I, $(VPATH))
 
 # src files
-SRC := main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
+SRC := main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
 
 # obj files and path for them
 OBJ_DIR = ./obj

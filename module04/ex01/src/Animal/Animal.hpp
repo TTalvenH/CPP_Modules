@@ -13,7 +13,7 @@ public:
 	Animal();
 	Animal( const Animal& copy );
 	Animal&	operator=( const Animal& other );
-	virtual ~Animal();
+	~Animal();
 
 	virtual void	makeSound() const;
 	std::string	getType() const;

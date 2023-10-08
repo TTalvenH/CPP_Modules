@@ -1,4 +1,4 @@
-#include <Weapon.hpp>
+#include "Weapon.hpp"
 
 Weapon::Weapon( std::string type ) : m_type(type){
 }

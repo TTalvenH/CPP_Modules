@@ -1,4 +1,4 @@
-#include <ClapTrap.hpp>
+#include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
 	: m_name("")

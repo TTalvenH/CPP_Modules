@@ -1,4 +1,4 @@
-#include <ScavTrap.hpp>
+#include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap(""){
 	m_hp = 100;

@@ -1,4 +1,4 @@
-#include <Fixed.hpp>
+#include "Fixed.hpp"
 
 Fixed::Fixed() : m_fixedPoint(0){
 	std::cout << "Default constructor called" << std::endl;

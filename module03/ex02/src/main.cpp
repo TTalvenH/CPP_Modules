@@ -1,4 +1,4 @@
-#include <FragTrap.hpp>
+#include "./FragTrap/FragTrap.hpp"
 
 int main (){
 	FragTrap fraggy("Fraggy");
