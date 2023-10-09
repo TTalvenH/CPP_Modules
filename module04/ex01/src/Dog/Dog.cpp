@@ -1,6 +1,6 @@
 #include "Dog.hpp"
 
-Dog::Dog() :  Animal() {
+Dog::Dog() : Animal(){
 	m_type = "Dog";
 	m_brain = new Brain;
 	std::cout << "Dog constructor called" << std::endl;
@@ -28,4 +28,8 @@ Dog&	Dog::operator=( const Dog& other ){
 
 void	Dog::makeSound() const{
 	std::cout << "Bark bark bark!" << std::endl;
+}
+
+Brain&	Dog::getBrain(){
+	return *m_brain;
 }

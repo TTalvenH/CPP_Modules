@@ -16,8 +16,9 @@ public:
 	Dog&	operator=( const Dog& other );
 	~Dog();
 
-void	makeSound() const;
-	
+	void	makeSound() const;
+	Brain&	getBrain();
+
 };
 
 #endif

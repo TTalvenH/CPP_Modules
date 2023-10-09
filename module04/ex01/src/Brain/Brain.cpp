@@ -28,10 +28,13 @@ void	Brain::setIdea( const int index, const std::string idea ){
 	if (index >= 0 && index <= 100){
 		m_ideas[index] = idea;
 	}
+	else
+		std::cout << "setIdea: Index out of range!" << std::endl;
 }
 std::string	Brain::getIdea( const int index ) const{
 	if (index >= 0 && index <= 100){
 		return m_ideas[index];
 	}
-	return NULL;
+	return "getIdea: Index out of range!";
 }
+
