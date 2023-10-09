@@ -29,6 +29,5 @@ class	Contact
 		std::string getDarkSecret();
 		bool isEmpty();
 		~Contact();
-
 };
 #endif

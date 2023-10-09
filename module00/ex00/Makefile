@@ -5,8 +5,8 @@ NAME = megaphone
 CC = c++
 
 # compiler flags
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -MMD -O3
-DEBUG_FLAGS = -g -O0 -fsanitize=address
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -MMD
+DEBUG_FLAGS = -g -fsanitize=address
 
 # src files and path for them
 VPATH = ./
@@ -22,7 +22,6 @@ DEP =$(OBJ:%.o=%.d)
 # rules
 all: $(NAME)
 
-debug: CFLAGS := $(filter-out -O3,$(CFLAGS))
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: all
 
