@@ -1,6 +1,6 @@
 #include <iostream>
+#include <string>
 #include <cctype>
-#include <cstring>
 
 void	StringToUpper(char* str){
 	for(size_t i = 0; str[i] != '\0'; i++){
