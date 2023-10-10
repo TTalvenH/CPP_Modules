@@ -2,7 +2,8 @@
 
 int	main( void )
 {
-	Zombie* NewZombie = newZombie("Test_zomboi1");
-	randomChump("Test_zomboi2");
+	Zombie* NewZombie = newZombie("NewZomboi");
+	NewZombie->announce();
+	randomChump("RandomZomboi");
 	delete(NewZombie);
 }
