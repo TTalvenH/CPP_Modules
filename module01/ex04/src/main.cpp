@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 
-
 int	main(int argc, char *argv[]){
 	if (argc == 4){
 		std::string		line;
@@ -28,7 +27,7 @@ int	main(int argc, char *argv[]){
 			line.insert(pos, newWord);
 			pos += newWord.length();
 			}
-			fileOut << line;
+			fileOut << line << std::endl;
 		}
 		file.close();
 		fileOut.close();

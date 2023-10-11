@@ -1,0 +1,2 @@
+Shouldn't be able to replace anything in this file.
+(Norights.txt.replace exists and doesn't have rights)
