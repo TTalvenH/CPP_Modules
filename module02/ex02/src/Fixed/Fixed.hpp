@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cmath>
 
-
 class Fixed{
 	private:
 		int					m_fixedPoint;
@@ -27,10 +26,10 @@ class Fixed{
 		Fixed	operator-( const Fixed& other)const ;
 		Fixed	operator*( const Fixed& other)const ;
 		Fixed	operator/( const Fixed& other)const ;
-		Fixed&	operator++();
-		Fixed	operator++( int );
-		Fixed&	operator--();
-		Fixed	operator--( int );
+		Fixed&	operator++( int );
+		Fixed	operator++();
+		Fixed&	operator--( int );
+		Fixed	operator--();
 		static Fixed&	min( Fixed& a, Fixed& b );
 		static Fixed&	max( Fixed& a, Fixed& b );
 		static const Fixed&	min( const Fixed& a,const Fixed& b );

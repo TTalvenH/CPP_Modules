@@ -55,43 +55,39 @@ bool	Fixed::operator==( const Fixed& other )const{
 }
 
 Fixed	Fixed::operator+( const Fixed& other )const{
-		Fixed result(m_fixedPoint + other.m_fixedPoint);
-		return result;
+		return (Fixed(toFloat() + other.toFloat()));
 }
 
 Fixed	Fixed::operator-( const Fixed& other )const{
-		Fixed result(m_fixedPoint - other.m_fixedPoint);
-		return result;
+		return (Fixed(toFloat() - other.toFloat()));
 }
 
 Fixed	Fixed::operator*( const Fixed& other )const{
-		Fixed result(0);
-		result.m_fixedPoint = (m_fixedPoint * other.m_fixedPoint) >> m_bits;
-		return result;
+		return (Fixed(toFloat() * other.toFloat()));
+
 }
 
 Fixed	Fixed::operator/( const Fixed& other )const{
-		Fixed result((m_fixedPoint << m_bits) / other.m_bits);
-		return result;
+		return (Fixed(toFloat() / other.toFloat()));
 }
 
-Fixed&	Fixed::operator++(){
+Fixed&	Fixed::operator++(int){
 		m_fixedPoint += 1;
 		return *this;
 }
 
-Fixed	Fixed::operator++(int){
+Fixed	Fixed::operator++(){
 		Fixed temp(*this);
 		m_fixedPoint += 1;
 		return temp;
 }
 
-Fixed&	Fixed::operator--(){
+Fixed&	Fixed::operator--(int){
 		m_fixedPoint -= 1;
 		return *this;
 }
 
-Fixed	Fixed::operator--(int){
+Fixed	Fixed::operator--(){
 		Fixed temp(*this);
 		m_fixedPoint -= 1;
 		return temp;
