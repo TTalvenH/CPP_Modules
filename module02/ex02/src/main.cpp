@@ -27,10 +27,10 @@ int	main()
 
 	std::cout << "\n=================================\n" << std::endl;
 
-	Fixed plus(    a + b);
-	Fixed minus(   a - b);
-	Fixed multibly(a * b);
-	Fixed divide(  a / b);
+	Fixed plus		(a + b);
+	Fixed minus		(a - b);
+	Fixed multibly	(a * b);
+	Fixed divide	(a / b);
 	std::cout << a << " + " << b << " = " << plus << std::endl;
 	std::cout << a << " - " << b << " = " << minus << std::endl;
 	std::cout << a << " * " << b << " = " << multibly << std::endl;
