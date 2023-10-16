@@ -58,6 +58,6 @@ void	ClapTrap::beRepaired( unsigned int amount ){
 	if (m_energy > 0 && m_hp > 0){
 		m_energy--;
 		m_hp += amount;
-		std::cout << "ClapTrap " << m_name << " repairs " << amount << " of Hit Points!" << std::endl;
+		std::cout << "ClapTrap " << m_name << " repairs " << amount << " Hit Points!" << std::endl;
 	}
 }

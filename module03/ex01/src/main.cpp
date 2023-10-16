@@ -1,8 +1,26 @@
 #include <ScavTrap.hpp>
 
 int main (){
-	ScavTrap scav("scavvi");
+	ClapTrap clappi("Clappi");
+	ScavTrap scav("Scavvi");
 
-	scav.attack("test");
-	scav.guardGate();
+	clappi.attack("Scavvi");
+	scav.attack("Clappi");
+	scav.beRepaired(10);
+	scav.takeDamage(10);
+    scav.guardGate();
+
+	std::cout << "\n===========================\n" << std::endl;
+
+	ScavTrap scav_copy(scav);
+	ScavTrap scav2("newScavvi");
+
+	scav_copy.attack("someone");
+
+	scav_copy = scav2;
+
+	scav_copy.attack("someone");
+
+	std::cout << "\n===========================\n" << std::endl;
+
 }

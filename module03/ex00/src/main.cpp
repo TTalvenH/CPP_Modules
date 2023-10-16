@@ -4,7 +4,6 @@ int main (){
 	ClapTrap	Nameless;
 	ClapTrap	Buck("Buck");
 	ClapTrap	Bob("Bob");
-
 	ClapTrap	Bob2(Bob);
 	
 	std::cout << std::endl;
