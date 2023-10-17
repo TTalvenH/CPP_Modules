@@ -31,6 +31,7 @@ int main(){
 	{
 		std::cout << "\n=========== My Tests ================\n" << std::endl;
 
+		Animal	animal;
 		Animal* cat = new Cat();
 		Animal* dog = new Dog();
 		WrongAnimal* wrong_cat = new WrongCat();
@@ -44,6 +45,7 @@ int main(){
 
 		std::cout << "\n-------------------------\n" << std::endl;
 
+		animal.makeSound();
 		cat->makeSound();
 		dog->makeSound();
 		wrong_cat->makeSound();
