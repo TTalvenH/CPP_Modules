@@ -10,27 +10,42 @@ int main(){
 			animals[i] = new Cat;
 
 	}
+
+	std::cout << "\n-----------------------------" << std::endl;
+
 	std::cout << std::endl;
 	for (int i = 0; i < 4; i++){
 		animals[i]->makeSound();
 	}
+	std::cout << "\n-----------------------------\n" << std::endl;
 
-	// dynamic_cast<Dog*>(animals[0])->getBrain().setIdea(101, "Bark dynamic_cast is cool Bark!");
-	// std::cout << dynamic_cast<Dog*>(animals[0])->getBrain().getIdea(101) << std::endl;
-
-	std::cout << std::endl;
 	Dog originalDog;
-
 	originalDog.getBrain().setIdea(0, "Bark Bark fun fun!");
-	Dog copyDog(originalDog);
-	copyDog.getBrain().setIdea(0, "zzzzzz");
-	std::cout << std::endl;
 	std::cout << originalDog.getBrain().getIdea(0) << std::endl;
+
+	std::cout << "\n-----------------------------\n" << std::endl;
+
+	Dog copyDog(originalDog);
 	std::cout << copyDog.getBrain().getIdea(0) << std::endl;
-	std::cout << std::endl;
+	copyDog.getBrain().setIdea(0, "zzzzzz");
+	std::cout << copyDog.getBrain().getIdea(0) << std::endl;
+
+	std::cout << "\n-----------------------------\n" << std::endl;
+
 	copyDog = originalDog;
 	std::cout << copyDog.getBrain().getIdea(0) << std::endl;
-	std::cout << std::endl;
+	std::cout << "\n-----------------------------" << std::endl;
+
+	Dog basic;
+	basic.getBrain().setIdea(0, "yes yes good idea");
+	{
+		Dog tmp = basic;
+		std::cout << tmp.getBrain().getIdea(0) << std::endl;
+	}
+	std::cout << basic.getBrain().getIdea(0) << std::endl;
+	
+
+	std::cout << "\n-----------------------------" << std::endl;
 	
 	for (int i = 0; i < 4; i++){
 		delete animals[i];

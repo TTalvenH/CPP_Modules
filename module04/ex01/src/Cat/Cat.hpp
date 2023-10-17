@@ -13,9 +13,9 @@ public:
 	Cat();
 	Cat( const Cat& copy );
 	Cat&	operator=( const Cat& other );
-	~Cat();
+	virtual ~Cat();
 
-	void	makeSound() const;
-	Brain&	getBrain() ;
+	virtual void	makeSound() const;
+	Brain&	getBrain();
 };
 #endif
