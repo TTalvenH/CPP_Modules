@@ -23,6 +23,10 @@ int main(){
 	me->use(1, *bob);
 	me->use(3, *bob);
 
+	ICharacter* copy = me;
+
+	delete (copy);
+	
 	Character* newMe = static_cast<Character*>(me);
 	AMateria* onGround1 = newMe->getItem(0);
 	me->unequip(0);

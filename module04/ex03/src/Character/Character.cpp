@@ -19,7 +19,7 @@ Character&	Character::operator=(const Character& copy){
 		m_name = copy.m_name;
 		for (int i = 0; i < 4; i++){
 			delete m_inventory[i]; 
-			m_inventory[i] = copy.m_inventory[i];
+			m_inventory[i] = copy.m_inventory[i]->clone();
 		}
 	}
 	return *this;
