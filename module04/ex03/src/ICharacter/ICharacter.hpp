@@ -2,10 +2,10 @@
 #define I_CHARACTER_HPP
 
 #include "../AMateria/AMateria.hpp"
+#include <string>
 
 class	AMateria;
 
-#include <string>
 
 class ICharacter{
 public:
