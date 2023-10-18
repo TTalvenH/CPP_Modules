@@ -2,18 +2,11 @@
 
 int	main(){
 	try{
-	Bureaucrat Default;
-	Bureaucrat Bob("Bob", 150);
+	Bureaucrat Bob("Bob", 1);
 	Bureaucrat Timmy("Timmy", 1);
-	Bureaucrat TimmyCopy(Timmy);
 
-
-	std::cout << Default << std::endl;
 	std::cout << Bob << std::endl;
 	std::cout << Timmy << std::endl;
-	std::cout << TimmyCopy << std::endl;
-
-	Bob = Timmy;
 
 	std::cout << Bob << std::endl;
 
