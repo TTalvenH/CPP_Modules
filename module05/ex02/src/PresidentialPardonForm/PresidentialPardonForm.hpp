@@ -6,12 +6,13 @@
 class PresidentialPardonForm : public AForm{
 private:
 	std::string m_target;
+	
+	PresidentialPardonForm();
+	PresidentialPardonForm&	operator=(const PresidentialPardonForm& other);
 
 public:
-	PresidentialPardonForm();
-	PresidentialPardonForm(const PresidentialPardonForm& copy);
 	PresidentialPardonForm(std::string target);
-	PresidentialPardonForm&	operator=(const PresidentialPardonForm& other);
+	PresidentialPardonForm(const PresidentialPardonForm& copy);
 	virtual ~PresidentialPardonForm();
 
 protected:

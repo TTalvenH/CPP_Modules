@@ -23,7 +23,7 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}
 
-void	ShrubberyCreationForm::action() const{
+void ShrubberyCreationForm::action() const{
 	std::string fileName = m_target + "_shrubbery";
 	std::ofstream	outFile(fileName.c_str(), std::ios::out);
 	if (!outFile.is_open()){

@@ -6,12 +6,13 @@
 class RobotomyRequestForm : public AForm{
 private:
 	std::string m_target;
+	
+	RobotomyRequestForm();
+	RobotomyRequestForm&	operator=(const RobotomyRequestForm& other);
 
 public:
-	RobotomyRequestForm();
-	RobotomyRequestForm(const RobotomyRequestForm& copy);
 	RobotomyRequestForm(std::string target);
-	RobotomyRequestForm&	operator=(const RobotomyRequestForm& other);
+	RobotomyRequestForm(const RobotomyRequestForm& copy);
 	virtual ~RobotomyRequestForm();
 
 protected:

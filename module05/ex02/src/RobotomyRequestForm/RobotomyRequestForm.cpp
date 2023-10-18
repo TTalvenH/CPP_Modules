@@ -23,7 +23,7 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 RobotomyRequestForm::~RobotomyRequestForm(){}
 
-void	RobotomyRequestForm::action() const{
+void RobotomyRequestForm::action() const{
 	std::srand(static_cast<unsigned>(std::time(NULL)));
 	int	randomValue = std::rand() % 2;
 	std::cout << "Brrrrrrrrrrrrrrrr..." << std::endl;
