@@ -11,9 +11,9 @@ private:
 	AForm*	createPresidentialPardonForm(std::string target);
 public:
 	Intern();
+	Intern&	operator=(const Intern& other);
 	Intern(const Intern& copy);
 	Intern(std::string name, int signGrade, int execGrade);
-	Intern&	operator=(const Intern& other);
 	~Intern();	
 
 	AForm*	makeForm(std::string name, std::string target);

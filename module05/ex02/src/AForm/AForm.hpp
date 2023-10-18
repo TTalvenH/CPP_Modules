@@ -15,6 +15,10 @@ private:
 	bool				m_signed;
 	const int			m_signGrade;
 	const int			m_execGrade;
+
+	AForm();
+	AForm&	operator=(const AForm& other);
+	
 public:
 
 	class GradeTooHighException : public std::exception{
@@ -30,10 +34,8 @@ public:
 			virtual const char* what() const throw();
 	};
 	
-	AForm();
 	AForm(const AForm& copy);
 	AForm(std::string name, int signGrade, int execGrade);
-	AForm&	operator=(const AForm& other);
 	virtual ~AForm();
 
 	std::string	getName() const;

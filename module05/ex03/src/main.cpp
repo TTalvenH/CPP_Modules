@@ -11,7 +11,9 @@ int	main(){
 	AForm* rrf;
 	rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
 
+	if (rrf){
 	Steven.signForm(*rrf);
+	}
 
 	}
 }
