@@ -6,13 +6,14 @@
 
 int	main(){
 	{
-	Bureaucrat Steven("Steven", 150);
+	Bureaucrat Steven("Steven", 50);
 	Intern someRandomIntern;
-	AForm* rrf;
-	rrf = someRandomIntern.makeForm("RobotomyRequestForm", "Bender");
+	AForm* someForm;
+	someForm = someRandomIntern.makeForm("PresidentialPardonForm", "Bender");
 
-	if (rrf){
-	Steven.signForm(*rrf);
+	if (someForm){
+	Steven.signForm(*someForm);
+	Steven.executeForm(*someForm);
 	}
 
 	}

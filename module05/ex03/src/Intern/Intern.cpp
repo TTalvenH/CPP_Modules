@@ -4,14 +4,6 @@
 #include "../PresidentialPardonForm/PresidentialPardonForm.hpp"
 
 Intern::Intern(){}
- 
-Intern::Intern(__attribute__((unused))const Intern& copy){}
-
-Intern&	Intern::operator=(__attribute__((unused))const Intern& other){
-	if (this != &other){
-	}
-	return *this;
-}
 
 Intern::~Intern(){}
 

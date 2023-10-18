@@ -9,11 +9,12 @@ private:
 	AForm*	createShrubberyForm(std::string target);
 	AForm*	createRobotomyRequestForm(std::string target);
 	AForm*	createPresidentialPardonForm(std::string target);
-public:
-	Intern();
+
 	Intern&	operator=(const Intern& other);
 	Intern(const Intern& copy);
-	Intern(std::string name, int signGrade, int execGrade);
+	
+public:
+	Intern();
 	~Intern();	
 
 	AForm*	makeForm(std::string name, std::string target);
