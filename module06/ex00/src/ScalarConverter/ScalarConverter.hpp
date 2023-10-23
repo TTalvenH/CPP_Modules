@@ -16,5 +16,9 @@ public:
 	static void convert(std::string& input);
 };
 
+void convertChar(const std::string& input);
+void convertInt(const std::string& input);
+void convertFloat(const std::string& input);
+void convertDouble(const std::string& input);
 
 #endif
