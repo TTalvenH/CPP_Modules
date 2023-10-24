@@ -10,15 +10,15 @@ private:
 	ScalarConverter(const ScalarConverter& other);
 	ScalarConverter& operator=(const ScalarConverter &);
 	~ScalarConverter();
+	static void convertChar(const std::string& input);
+	static void convertInt(const std::string& input);
+	static void convertFloat(const std::string& input);
+	static void convertDouble(const std::string& input);
+	static void validInput(const std::string& input);
 
 public:
 
 	static void convert(std::string& input);
 };
-
-void convertChar(const std::string& input);
-void convertInt(const std::string& input);
-void convertFloat(const std::string& input);
-void convertDouble(const std::string& input);
 
 #endif

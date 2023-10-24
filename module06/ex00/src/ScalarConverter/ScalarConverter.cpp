@@ -3,6 +3,7 @@
 #include <sstream>
 #include <limits>
 #include <iomanip>
+#include <cstdlib>
 
 static char		_char = 0;
 static int		_int = 0;
@@ -10,10 +11,12 @@ static float	_float = 0;
 static double	_double = 0;
 static bool		_isImpossible = false;
 
-void convertChar(const std::string& input)
+void ScalarConverter::convertChar(const std::string& input)
 {
 	std::istringstream	_stream(input);
-	if (_stream >> _char)
+
+	_stream >> _char;
+	if (!_stream.fail())
 	{
 		_int = static_cast<int>(_char);
 		_float = static_cast<float>(_char);
@@ -21,15 +24,18 @@ void convertChar(const std::string& input)
 	}
 	else
 	{
-		std::cerr << "Invalid input!!!" << std::endl; return;
+		std::cerr << "Invalid input, type conversion impossible!!!" << std::endl;
+		exit(0);
 	}
 }
 
-void convertInt(const std::string& input)
+void ScalarConverter::convertInt(const std::string& input)
 {
 	std::istringstream	_stream(input);
 
-	if (_stream >> _int)
+	validInput(input);
+	_stream >> _int;
+	if (!_stream.fail())
 	{
 		_char = static_cast<char>(_int);
 		_float = static_cast<float>(_int);
@@ -37,15 +43,21 @@ void convertInt(const std::string& input)
 	}
 	else
 	{
-		std::cerr << "Invalid input!!!" << std::endl; return;
+		std::cerr << "Invalid input, type conversion impossible!!!" << std::endl;
+		exit(0);
 	}
 }
 
-void convertFloat(const std::string& input)
+void ScalarConverter::convertFloat(const std::string& input)
 {
 	std::istringstream	_stream(input);
+	size_t				_streamPos;
 
-	if (_stream >> _float)
+	_stream >> _float;
+	_streamPos = _stream.tellg();
+	if (input[input.length() - 1] == 'f')
+		_streamPos++;
+	if (!_stream.fail() && !(_streamPos < input.length()))
 	{
 		_char = static_cast<char>(_float);
 		_int = static_cast<int>(_float);
@@ -53,15 +65,18 @@ void convertFloat(const std::string& input)
 	}
 	else
 	{
-		std::cerr << "Invalid input!!!" << std::endl; return;
+		std::cerr << "Invalid input, type conversion impossible!!!" << std::endl;
+		exit(0);
 	}
 }
 
-void convertDouble(const std::string& input)
+void ScalarConverter::convertDouble(const std::string& input)
 {
 	std::istringstream	_stream(input);
 
-	if (_stream >> _double)
+	validInput(input);
+	_stream >> _double;
+	if (!_stream.fail())
 	{
 		_char = static_cast<char>(_double);
 		_int = static_cast<int>(_double);
@@ -69,7 +84,26 @@ void convertDouble(const std::string& input)
 	}
 	else
 	{
-		std::cerr << "Invalid input!!!" << std::endl; return;
+		std::cerr << "Invalid input, type conversion impossible!!!" << std::endl;
+		exit(0);
+	}
+}
+
+void ScalarConverter::validInput(const std::string& input)
+{
+	size_t i = 0;
+	bool   _dot = false;
+	if (input[0] == '-' || input[0] == '+')
+		i++;
+	for ( ; i < input.length(); i++)
+	{
+		if (input[i] == '.' && !_dot)
+			_dot = true;
+		else if (!std::isdigit(input[i]))
+		{
+			std::cerr << "Invalid input, type conversion impossible!!!" << std::endl;
+			exit(0);
+		}
 	}
 }
 
@@ -108,7 +142,7 @@ void ScalarConverter::convert(std::string& input)
 		if (_int < 32 || _int > 126)
 			std::cout << "Non displayable" << std::endl;
 		else
-			std::cout << _char << std::endl;
+			std::cout << "'" << _char << "'" << std::endl;
 		std::cout << "int: " << _int << std::endl;
 	}
 	std::cout << std::fixed << std::setprecision(1) <<  "float: " << _float << "f" << std::endl;
