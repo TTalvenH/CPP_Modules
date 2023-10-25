@@ -14,7 +14,7 @@ private:
 	static void convertInt(const std::string& input);
 	static void convertFloat(const std::string& input);
 	static void convertDouble(const std::string& input);
-	static void validInput(const std::string& input);
+	static bool validInput(const std::string& input);
 
 public:
 
