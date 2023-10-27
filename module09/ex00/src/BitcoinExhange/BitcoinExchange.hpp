@@ -1,0 +1,6 @@
+#ifndef BITCOINT_EXCHANGE_HPP
+#define BITCOINT_EXCHANGE_HPP
+
+
+
+#endif
