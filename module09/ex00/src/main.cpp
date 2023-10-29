@@ -8,12 +8,15 @@ int main(int argc, char* argv[])
 		{
 			BitcoinExchange exchange("./db/data.csv", argv[1]);
 
-			exchange.printBitcoinValues();
-		}
+			exchange.printConversion();
+	
+		}	
 		catch (std::exception& e)
 		{
 			std::cerr << e.what() << std::endl;
 		}
 	}
+	else
+		std::cout << "Error: could not open file." << std::endl;
 	return 0;
 }

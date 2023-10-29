@@ -12,8 +12,7 @@ typedef std::multimap<std::time_t, double> DateValueMap;
 private:
 	const std::string	m_dbPath;
 	const std::string	m_inFilePath;
-	DateValueMap		m_dataBaseDateValueMap;
-	DateValueMap		m_inFileDateValueMap;
+	DateValueMap		m_dbDateValueMap;
 
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& copy);
@@ -27,7 +26,7 @@ public:
 	BitcoinExchange(std::string dbPath, std::string inFilePath);
 	~BitcoinExchange();
 
-	void printBitcoinValues();
+	void printConversion();
 };
 
 #endif

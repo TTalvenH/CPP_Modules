@@ -1,7 +1,7 @@
 #include "BitcoinExchange.hpp"
 #include <sstream>
 #include <fstream>
-
+#include <iomanip>
 
 BitcoinExchange::BitcoinExchange(std::string dbPath, std::string inFilePath)
 : m_dbPath(dbPath)
@@ -21,12 +21,16 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 	{
 		if (streamDate.eof() && dash1 == '-' && dash2 == '-')
 		{	
+			unsigned int febDays = 28;
+
 			if (year > 9999
 				|| month > 12
 				|| day > 31
-				|| (!(month % 2) && day > 30)
-				|| ((month == 2) && day > 28
-				&& (!(year % 4) && ((year % 100) || !(year % 400))) && day > 29))
+				|| (!(month % 2) && day > 30))
+				return false;
+			if (!(year % 400) || (year % 100 && !(year % 4)))
+				febDays = 29;
+			if (month == 2 && day > febDays)
 				return false;
 			return true;
 		}
@@ -40,7 +44,8 @@ void	BitcoinExchange::parseLineToMap(const std::string& line, DateValueMap& map,
 		double				value;
 
 		std::getline(lineStream, date, delim);
-		lineStream >> value;
+		if (!(lineStream >> value) || !lineStream.eof())
+			throw std::runtime_error("Error: Invalid value.");
 		if (delim == '|')
 		{
 			if (value > 1000)
@@ -67,12 +72,12 @@ void BitcoinExchange::parseDbIntoMap()
 	line.clear();
 	while (std::getline(file, line))
 	{
-		parseLineToMap(line, m_dataBaseDateValueMap, ',');
+		parseLineToMap(line, m_dbDateValueMap, ',');
 	}
 	file.close();
 }
 
-void BitcoinExchange::printBitcoinValues()
+void BitcoinExchange::printConversion()
 {
 	std::ifstream 	file(m_inFilePath);
 	std::string		line;
@@ -85,31 +90,47 @@ void BitcoinExchange::printBitcoinValues()
 	line.clear();
 	while(std::getline(file, line))
 	{
+		if (line.empty())
+			continue;
 		try
 		{
+			DateValueMap		lineDateValueMap;
 			std::istringstream 	stream(line);
 			std::string			date;
 
 			std::getline(stream, date, ' ');
 			if (!isValidDate(date))
 				throw std::runtime_error("Error: bad input => " + date);
-			parseLineToMap(line, m_inFileDateValueMap, '|');
+			parseLineToMap(line, lineDateValueMap, '|');
+			
+			DateValueMap::const_iterator it = lineDateValueMap.begin();
+			DateValueMap::const_iterator dbIt = m_dbDateValueMap.begin();
 
-			DateValueMap::const_iterator it = m_inFileDateValueMap.end();
-			it--;
-			std::cout << it->first << " " << it->second << std::endl;
+			if (it->first < dbIt->first)
+				throw std::runtime_error("Error: Bitcoint exchange rates start from 2009-01-02.");
+			for ( ; dbIt != m_dbDateValueMap.end(); dbIt++)
+			{
+				if (dbIt->first == it->first)
+					break;
+				else if (dbIt->first > it->first)
+				{
+					dbIt--;
+					break;
+				}
+			}
+			if (dbIt == m_dbDateValueMap.end())
+				dbIt--;
+			std::cout << date 
+			<< " => " 
+			<<  it->second 
+			<< " = "
+			<<  std::fixed << std::setprecision(1) 
+			<<  dbIt->second * it->second
+			<< std::endl;
 		}
 		catch(std::exception& e)
 		{
 			std::cout << e.what() << std::endl;
 		}
 	}
-
-
-	// for (DateValueMap::const_iterator it = m_dateValueMap.begin(); it != m_dateValueMap.end(); it++)
-	// {
-	// 	        std::cout << it->first << " " << it->second << std::endl;
-	// }
-	std::cout << std::endl;
-
 }
