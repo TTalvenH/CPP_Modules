@@ -3,6 +3,7 @@
 int main()
 {
 	Array<std::string> strings(3);
+	Array<std::string> empty;
 	strings[0] = "Hive";
 	strings[1] = "is";
 	strings[2] = "the best!!";
@@ -44,5 +45,11 @@ int main()
 	catch (std::exception& e)
 	{
 		std::cout << "Index out of bounds!! " << e.what() << std::endl;
+	}
+	{
+		std::cout << "==============const test===============" << std::endl;
+		const Array<int> const_array(10);
+		// const_array[0] = 10;
+		std::cout << const_array[9] << std::endl;
 	}
 }

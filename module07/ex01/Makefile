@@ -1,5 +1,5 @@
 # Program name
-NAME = ex00
+NAME = ex01
 
 # compiler
 CC = c++
