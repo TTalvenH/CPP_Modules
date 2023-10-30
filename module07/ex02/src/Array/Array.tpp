@@ -34,7 +34,15 @@ Array<T>& Array<T>::operator=(const Array& copy)
 }
 
 template <typename T>
-T& Array<T>::operator[](unsigned int index) const
+T& Array<T>::operator[](unsigned int index)
+{
+	if (index >= m_size)
+		throw std::exception();
+	return m_array[index];
+}
+
+template <typename T>
+const T& Array<T>::operator[](unsigned int index) const
 {
 	if (index >= m_size)
 		throw std::exception();
