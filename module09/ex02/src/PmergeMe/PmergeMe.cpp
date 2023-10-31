@@ -26,6 +26,7 @@ void PmergeMe::sort()
 	for (vectorIter it = m_vec.begin(); it != m_vec.end(); it++)
 		std::cout << *it << " ";
 	std::cout << std::endl;
+
 	gettimeofday(&start, NULL);
 	mergeInsertVec(0, m_vec.size() - 1, 20);
 	gettimeofday(&end, NULL);
@@ -34,7 +35,6 @@ void PmergeMe::sort()
 	vecTime = seconds * 1000000 + microseconds;
 
 	gettimeofday(&start, NULL);
-
 	m_list = mergeInsertList(m_list, 20);
 	gettimeofday(&end, NULL);
 	seconds = end.tv_sec - start.tv_sec;
