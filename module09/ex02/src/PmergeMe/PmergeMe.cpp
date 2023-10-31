@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 #include <cstdlib>
 #include <iostream>
+#include <sys/time.h>
 
 PmergeMe::PmergeMe(int argc, char** argv) : m_argv(argv)
 {
@@ -10,144 +11,63 @@ PmergeMe::PmergeMe(int argc, char** argv) : m_argv(argv)
 		m_vec.push_back(std::atoi(argv[i]));
 		m_list.push_back(std::atoi(argv[i]));
 	}
-	for (unsigned int i = 0; i < m_vec.size(); i++)
-	{
-		std::cout << m_vec[i] << " ";
-	}
-	std::cout << std::endl;
-	for (listIter it = m_list.begin(); it != m_list.end(); it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-	
 }
 
 PmergeMe::~PmergeMe(){}
 
-void PmergeMe::mergeVec(int low, int mid, int high)
-{
-	int i = low;
-	int j = mid + 1;
-	int k = 0;
-	std::vector<int> temp(high - low + 1);
-
-    while (i <= mid && j <= high)
-	{
-        if (m_vec[i] <= m_vec[j])
-            temp[k++] = m_vec[i++];
-        else
-            temp[k++] = m_vec[j++];
-    }
-    while (i <= mid)
-        temp[k++] = m_vec[i++];
-    while (j <= high)
-        temp[k++] = m_vec[j++];
-    for (int x = 0; x < k; x++)
-        m_vec[low + x] = temp[x];
-}
-
-void PmergeMe::mergeInsertVec(int low, int high, int threshold)
-{
-	if (low < high)
-	{
-		if (high - low <= threshold)
-		{
-			for (int i = low + 1; i <= high; i++)
-			{
-				int key = m_vec[i];
-				int j = i - 1;
-				while (j >= low && m_vec[j] > key)
-				{
-					m_vec[j + 1] = m_vec[j];
-					j--;
-				}
-				m_vec[j + 1] = key;
-			}
-		}
-		else
-		{
-			int mid = low + (high - low) / 2;
-			mergeInsertVec(low, mid, threshold);
-			mergeInsertVec(mid + 1, high, threshold);
-			mergeVec(low, mid, high);
-		}
-	}
-}
-
-std::list<int> PmergeMe::mergeList(std::list<int>& left, std::list<int>& right)
-{
-    std::list<int> result;
-
-    listIter leftIter = left.begin();
-    listIter rightIter = right.begin();
-
-    while (leftIter != left.end() && rightIter != right.end()) {
-        if (*leftIter <= *rightIter) {
-            result.push_back(*leftIter);
-            ++leftIter;
-        } else {
-            result.push_back(*rightIter);
-            ++rightIter;
-        }
-    }
-    result.splice(result.end(), left);
-    result.splice(result.end(), right);
-    return result;
-}
-
-void PmergeMe::insertList(std::list<int>& lst)
-{
-    for (listIter it = ++lst.begin(); it != lst.end(); ++it)
-	{
-        int current = *it;
-        listIter pos = it;
-        while (pos != lst.begin() && *std::prev(pos) > current) {
-            *pos = *std::prev(pos);
-            --pos;
-        }
-        *pos = current;
-    }
-}
-
-std::list<int> PmergeMe::mergeInsertList(std::list<int> lst, int threshold)
-{
-    if (m_list.size() <= static_cast<size_t>(threshold))
-	{
-        insertList(lst); 
-		return lst;
-	}
-    else
-	{
-        int mid = m_list.size() / 2;
-        std::list<int> left, right;
-
-        listIter it = m_list.begin();
-        for (int i = 0; i < mid; ++i)
-		{
-            left.push_back(*it);
-            it = m_list.erase(it);
-        }
-        right = m_list;
-        left = mergeInsertList(left, threshold);
-        right = mergeInsertList(right, threshold);
-        return mergeList(left, right);
-    }
-}
+#include <algorithm>
 
 void PmergeMe::sort()
 {
-	mergeInsertVec(0, m_vec.size() - 1, 20);
-	m_list = mergeInsertList(m_list, 20);
-	for (unsigned int i = 0; i < m_vec.size(); i++)
-	{
-		std::cout << m_vec[i] << " "; 
-	}
-	 std::cout << std::endl;
-	for (listIter it = m_list.begin(); it != m_list.end(); it++)
-	{
+	struct timeval	start, end;
+	long			seconds, microseconds, listTime, vecTime;
+
+	std::cout << "Before: ";
+	for (vectorIter it = m_vec.begin(); it != m_vec.end(); it++)
 		std::cout << *it << " ";
-	}
 	std::cout << std::endl;
+	gettimeofday(&start, NULL);
+	mergeInsertVec(0, m_vec.size() - 1, 20);
+	gettimeofday(&end, NULL);
+	seconds = end.tv_sec - start.tv_sec;
+	microseconds = end.tv_usec - start.tv_usec;
+	vecTime = seconds * 1000000 + microseconds;
+
+	gettimeofday(&start, NULL);
+
+	m_list = mergeInsertList(m_list, 20);
+	gettimeofday(&end, NULL);
+	seconds = end.tv_sec - start.tv_sec;
+	microseconds = end.tv_usec - start.tv_usec;
+	listTime = seconds * 1000000 + microseconds;
+
+	std::cout << "After: ";
+	for (listIter it = m_list.begin(); it != m_list.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+
+	std::cout << "Time to process a range of " << m_vec.size() << " with std::vector : " << vecTime << " us" << std::endl;
+	std::cout << "Time to process a range of " << m_list.size() << " with std::list : " << listTime << " us" << std::endl;
+
+	// for (listIter it = m_list.begin(); it != m_list.end(); it++)
+	// {
+	// 	listIter next = it;
+	// 	next++;
+	// 	if (next != m_list.end() && *next < *it)
+	// 	{
+	// 		std::cout << "list not sorted" << std::endl;
+	// 		break;
+	// 	}
+	// }
+	// for (vectorIter it = m_vec.begin(); it != m_vec.end(); it++)
+	// {
+	// 	vectorIter next = it;
+	// 	next++;
+	// 	if (next != m_vec.end() && *next < *it)
+	// 	{
+	// 		std::cout << "vec not sorted" << std::endl;
+	// 		break;
+	// 	}
+	// }
 }
 

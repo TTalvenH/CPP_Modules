@@ -5,7 +5,7 @@ NAME = PmergeMe
 CC = c++
 
 # compiler flags
-CFLAGS =  -Wall -Werror -Wextra -MMD
+CFLAGS =  -std=c++98 -Wall -Werror -Wextra -MMD
 DEBUG_FLAGS = -g
 
 # src files and path for them
@@ -14,7 +14,7 @@ INCS := $(wildcard $(addsuffix /*.hpp, $(VPATH)))
 INCLUDE = $(addprefix -I, $(VPATH))
 
 # src files
-SRC := main.cpp PmergeMe.cpp
+SRC := main.cpp PmergeMe.cpp MergeInsertVector.cpp MergeInsertList.cpp
 
 # obj files and path for them
 OBJ_DIR = ./obj
