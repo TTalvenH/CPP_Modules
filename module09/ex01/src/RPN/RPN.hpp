@@ -10,7 +10,7 @@ private:
 	RPN& operator=(const RPN& copy);
 
 	bool isValidToken(std::string token) const;
-
+	bool overflowCheck(int a, int b, char _operator) const;
 public:
 	RPN();
 	~RPN();
