@@ -7,13 +7,12 @@ int main()
 	std::vector<int> vecContainer(10);
 
 	for (size_t i = 0; i < vecContainer.size(); i++)
-		vecContainer[i] = i + 1;
+		vecContainer[i] = 5;
+	const std::vector<int> constVecContainer(vecContainer);
 	try{
-	std::cout << *easyfind(vecContainer, 1) << std::endl;
+	std::cout << *easyfind(vecContainer, 5) << std::endl;
+	std::cout << *easyfind(constVecContainer, 5) << std::endl;
 	} catch (std::exception& e){
 		std::cerr << e.what() << std::endl;
 	}
-
-
-
 }
