@@ -11,7 +11,7 @@ int main()
 	std::cout << "\n===================Copy constructor and tests=======================" << std::endl;
 	srand(std::time(NULL));
 	const int N = 10000;
-	std::vector<int> randomNumbers(10000, 0);
+	std::vector<int> randomNumbers(N, 0);
 
 	for(int i = 0; i < N; i++)
 			randomNumbers[i] = rand();
@@ -26,6 +26,8 @@ int main()
 	std::cout << "\n==================Copy assigment and tests========================" << std::endl;
 
 	copyTest.getData().clear();
+	std::cout << test.shortestSpan() << std::endl;
+	std::cout << test.longestSpan() << std::endl;
 	for(int i = 0; i < N; i++)
 			randomNumbers[i] = rand();
 	copyTest.fillSpan(randomNumbers.begin(), randomNumbers.end());
