@@ -5,7 +5,7 @@ NAME = RPN
 CC = c++
 
 # compiler flags
-CFLAGS =  -Wall -Werror -Wextra -MMD
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -MMD
 DEBUG_FLAGS = -g
 
 # src files and path for them
