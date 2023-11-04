@@ -23,5 +23,5 @@ Here are summary from each module
 ## Module 08
  - Templated containers, iterators, algorithms
 ## Module 09
- - Standard Tempalte Library usage, different containers (Map, Stack, List, Vector).
+ - Standard Template Library usage, different containers (Map, Stack, List, Vector).
 
